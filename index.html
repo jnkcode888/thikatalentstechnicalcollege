@@ -1,0 +1,2800 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thika Talents Technical College</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#1a2b6d", secondary: "#ff7f50" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        overflow-x: hidden;
+      }
+
+      .glassmorphism {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+      }
+
+      .hero-text {
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .floating-slow {
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .floating-fast {
+        animation: float 4s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .glow-button {
+        transition: all 0.3s ease;
+        box-shadow: 0 0 15px rgba(57, 255, 20, 0);
+      }
+
+      .glow-button:hover {
+        box-shadow: 0 0 20px rgba(57, 255, 20, 0.7);
+        transform: translateY(-3px);
+      }
+
+      .card-3d {
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+      }
+
+      .card-3d:hover {
+        transform: rotateY(180deg);
+      }
+
+      .card-front,
+      .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+      }
+
+      .card-back {
+        transform: rotateY(180deg);
+      }
+
+      .nav-link {
+        position: relative;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background: #39ff14;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        pointer-events: none;
+      }
+
+      .testimonial-card {
+        transition: all 0.5s ease;
+        transform: perspective(1000px) rotateY(0deg);
+      }
+
+      .testimonial-card:hover {
+        transform: perspective(1000px) rotateY(10deg) translateZ(20px);
+      }
+
+      .gradient-text {
+        background: linear-gradient(90deg, #1a2b6d, #4169e1);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .gradient-bg {
+        background: linear-gradient(135deg, #1a2b6d, #4169e1);
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .rotate-slow {
+        animation: rotate 20s linear infinite;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .parallax {
+        transition: transform 0.2s ease-out;
+      }
+
+      .slide-in {
+        animation: slideIn 0.8s forwards;
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      @keyframes slideIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Application Form Overlay Styles */
+      .application-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        z-index: 1000;
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .application-form {
+        background: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        width: 90%;
+        max-width: 600px;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: #1a2b6d;
+        box-shadow: 0 0 0 3px rgba(26, 43, 109, 0.1);
+      }
+
+      .close-form {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: white;
+      }
+
+      /* Card Content Styles */
+      .card-content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-front {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 1.5rem;
+      }
+
+      .card-back {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .course-list {
+        flex: 1;
+        overflow-y: auto;
+        padding-right: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .course-list::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      .course-list::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 2px;
+      }
+
+      .course-list::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 2px;
+      }
+
+      .course-list li {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Add to existing styles */
+      .course-category {
+        background: white;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .course-category:hover {
+        transform: translateY(-5px);
+      }
+
+      .course-category h3 {
+        color: #1a2b6d;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #1a2b6d;
+      }
+
+      .course-list-item {
+        padding: 0.75rem;
+        margin: 0.5rem 0;
+        border-radius: 0.5rem;
+        background: #f8fafc;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .course-list-item:hover {
+        background: #1a2b6d;
+        color: white;
+      }
+
+      /* Chatbot Toggle Button Styles */
+      .chatbot-toggle {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 99999;
+        background: #685fff;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        pointer-events: auto;
+      }
+
+      .chatbot-toggle:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      }
+
+      .chatbot-toggle i {
+        font-size: 28px;
+        pointer-events: none;
+      }
+
+      .chatbot-hidden {
+        display: none !important;
+      }
+
+      /* Add smooth scrolling to the page */
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  </head>
+  <body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 glassmorphism">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center">
+            <a
+              href="#"
+              class="text-3xl font-['Pacifico'] text-primary bg-white px-4 py-2 rounded-lg shadow"
+              >TTTC</a
+            >
+          </div>
+
+          <!-- Desktop Navbar -->
+          <nav class="hidden md:flex items-center space-x-8">
+            <a
+              href="#"
+              class="text-gray-700 hover:text-primary transition-colors bg-white px-4 py-2 rounded-lg shadow"
+              onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+              >Home</a
+            >
+            <a
+              href="#courses"
+              class="text-gray-700 hover:text-primary transition-colors bg-white px-4 py-2 rounded-lg shadow"
+              onclick="scrollToSection('courses')"
+            >
+              Courses
+            </a>
+
+            >
+            <a
+              href="#features"
+              class="text-gray-700 hover:text-primary transition-colors bg-white px-4 py-2 rounded-lg shadow"
+              onclick="scrollToSection('features')"
+              >About</a
+            >
+            <a
+              href="#campus-tour"
+              class="text-gray-700 hover:text-primary transition-colors bg-white px-4 py-2 rounded-lg shadow"
+              onclick="scrollToSection('campus-tour')"
+              >Facilities</a
+            >
+            <a
+              href="#contact"
+              class="text-gray-700 hover:text-primary transition-colors bg-white px-4 py-2 rounded-lg shadow"
+              onclick="scrollToSection('contact')"
+              >Contact</a
+            >
+          </nav>
+
+          <div class="hidden md:flex space-x-4">
+            <button
+              id="login-button"
+              class="bg-white text-primary px-6 py-2 rounded-lg font-bold shadow hover:bg-gray-50"
+            >
+              Login
+            </button>
+            <button
+              onclick="openApplicationForm()"
+              class="glow-button bg-gradient-to-r from-primary to-blue-500 text-white px-6 py-2 !rounded-button"
+            >
+              Apply Now
+            </button>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button
+              onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+              class="w-10 h-10 flex items-center justify-center text-gray-700 bg-white rounded-lg shadow"
+            >
+              <i class="ri-menu-line ri-2x"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobile-menu"
+          class="fixed top-16 left-0 right-0 z-50 hidden bg-white shadow-lg"
+        >
+          <div class="container mx-auto px-4 py-2">
+            <div class="flex justify-end mb-2">
+              <button
+                onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+                class="text-xl text-gray-700 hover:text-primary"
+              >
+                <i class="ri-close-line"></i>
+              </button>
+            </div>
+            <nav class="flex flex-col space-y-2">
+              <a
+                href="#"
+                class="text-gray-700 hover:text-primary transition-colors bg-gray-50 px-3 py-2 rounded-lg shadow text-center text-sm"
+                class="text-gray-700 hover:text-primary transition-colors bg-white px-3 py-2 rounded-lg shadow text-center text-sm"
+                onclick="document.getElementById('mobile-menu').classList.add('hidden'); window.scrollTo({top: 0, behavior: 'smooth'})"
+                >Home</a
+              >
+              <a
+                href="#courses"
+                class="text-gray-700 hover:text-primary transition-colors bg-white px-3 py-2 rounded-lg shadow text-center text-sm"
+                onclick="document.getElementById('mobile-menu').classList.add('hidden'); scrollToSection('courses')"
+                >Courses</a
+              >
+              <a
+                href="#features"
+                class="text-gray-700 hover:text-primary transition-colors bg-white px-3 py-2 rounded-lg shadow text-center text-sm"
+                onclick="document.getElementById('mobile-menu').classList.add('hidden'); scrollToSection('features')"
+                >About</a
+              >
+              <a
+                href="#campus-tour"
+                class="text-gray-700 hover:text-primary transition-colors bg-white px-3 py-2 rounded-lg shadow text-center text-sm"
+                onclick="document.getElementById('mobile-menu').classList.add('hidden'); scrollToSection('campus-tour')"
+                >Facilities</a
+              >
+              <a
+                href="#contact"
+                class="text-gray-700 hover:text-primary transition-colors bg-white px-3 py-2 rounded-lg shadow text-center text-sm"
+                onclick="document.getElementById('mobile-menu').classList.add('hidden'); scrollToSection('contact')"
+                >Contact</a
+              >
+              <button
+                onclick="document.getElementById('mobile-menu').classList.add('hidden'); openApplicationForm()"
+                class="glow-button bg-gradient-to-r from-primary to-blue-500 text-white px-3 py-2 rounded-lg shadow-lg w-full text-center text-sm font-semibold"
+              >
+                Apply Now
+              </button>
+              <button
+                onclick="document.getElementById('mobile-menu').classList.add('hidden'); showLoginOverlay()"
+                class="bg-white text-primary px-3 py-2 rounded-lg shadow font-semibold w-full text-center text-sm hover:bg-gray-50"
+              >
+                Login
+              </button>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Login Overlay -->
+    <div
+      id="login-overlay"
+      class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center"
+    >
+      <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold text-primary">Student Login</h2>
+          <button id="close-login" class="text-gray-500 hover:text-gray-700">
+            <i class="ri-close-line ri-2x"></i>
+          </button>
+        </div>
+        <form id="login-form" class="space-y-4">
+          <div>
+            <label
+              for="admission-number"
+              class="block text-sm font-medium text-gray-700"
+              >Admission Number</label
+            >
+            <input
+              type="text"
+              id="admission-number"
+              name="admission-number"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="password"
+              class="block text-sm font-medium text-gray-700"
+              >Password</label
+            >
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary-dark transition-colors"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Login Feedback Modal -->
+    <div
+      id="login-feedback"
+      class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center"
+    >
+      <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+        <div class="text-center">
+          <i class="ri-error-warning-line ri-4x text-yellow-500 mb-4"></i>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">
+            Not a Student Yet?
+          </h3>
+          <p class="text-gray-600 mb-6">
+            You are not a student at this school. Please apply now to get a 70%
+            scholarship!
+          </p>
+          <button
+            onclick="hideFeedback(); openApplicationForm()"
+            class="bg-primary text-white py-2 px-6 rounded-lg hover:bg-primary-dark transition-colors"
+          >
+            Apply Now
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section
+      class="relative min-h-screen flex items-center overflow-hidden"
+      style="
+        background-image: url('https://readdy.ai/api/search-image?query=futuristic%2520tech%2520campus%2520with%2520abstract%2520geometric%2520shapes%2520floating%2520in%2520space%252C%2520blue%2520gradient%2520background%2520with%2520subtle%2520glow%2520effects%252C%2520modern%2520architecture%2520with%2520glass%2520and%2520steel%2520structures%252C%2520holographic%2520displays%252C%2520low%2520poly%25203D%2520elements%252C%2520digital%2520particles&width=1920&height=1080&seq=hero1&orientation=landscape');
+        background-size: cover;
+        background-position: center;
+      "
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-primary/80 to-blue-900/40"
+      ></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="w-full md:w-1/2 text-white">
+            <h1
+              class="text-4xl md:text-6xl font-bold hero-text mb-4 floating-slow"
+            >
+              Nurturing Talents<br />
+              <span class="text-secondary">to Career</span>
+            </h1>
+            <p class="text-xl mb-8 max-w-lg floating">
+              Thika Talents Technical College - Where Talent Grows into Careers.
+              A registered TVET institution delivering student-centered,
+              transformative learning that empowers individuals and uplifts
+              communities.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <button
+                id="explore-programs-btn"
+                class="glow-button bg-gradient-to-r from-secondary to-yellow-500 text-white px-8 py-3 !rounded-button font-medium whitespace-nowrap"
+                onclick="openApplicationForm()"
+              >
+                Apply Now
+              </button>
+              <a
+                href="https://drive.google.com/file/d/1HtgqjaQjIapC5mGq83601-wyT2yUPTJp/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="glassmorphism text-white px-8 py-3 !rounded-button font-medium whitespace-nowrap"
+              >
+                Download Brochure
+              </a>
+            </div>
+          </div>
+
+          <div class="w-full md:w-1/2 mt-12 md:mt-0 flex justify-center">
+            <div class="floating relative">
+              <div
+                class="absolute -top-10 -left-10 w-20 h-20 bg-blue-500/20 rounded-full floating-fast"
+              ></div>
+              <div
+                class="absolute -bottom-5 -right-5 w-16 h-16 bg-secondary/20 rounded-full floating"
+              ></div>
+              <div
+                class="absolute top-1/2 right-1/4 w-12 h-12 bg-green-500/20 rounded-full floating-slow"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Animated Particles -->
+      <div
+        id="particles-container"
+        class="absolute inset-0 pointer-events-none"
+      ></div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div
+            class="glassmorphism rounded-lg p-6 text-center transform hover:scale-105 transition-transform"
+          >
+            <div
+              class="text-4xl font-bold gradient-text mb-2 counter"
+              data-target="25"
+            >
+              0
+            </div>
+            <p class="text-gray-600">Years of Excellence</p>
+          </div>
+
+          <div
+            class="glassmorphism rounded-lg p-6 text-center transform hover:scale-105 transition-transform"
+          >
+            <div
+              class="text-4xl font-bold gradient-text mb-2 counter"
+              data-target="4500"
+            >
+              0
+            </div>
+            <p class="text-gray-600">Students Enrolled</p>
+          </div>
+
+          <div
+            class="glassmorphism rounded-lg p-6 text-center transform hover:scale-105 transition-transform"
+          >
+            <div
+              class="text-4xl font-bold gradient-text mb-2 counter"
+              data-target="98"
+            >
+              0
+            </div>
+            <p class="text-gray-600">Employment Rate</p>
+          </div>
+
+          <div
+            class="glassmorphism rounded-lg p-6 text-center transform hover:scale-105 transition-transform"
+          >
+            <div
+              class="text-4xl font-bold gradient-text mb-2 counter"
+              data-target="42"
+            >
+              0
+            </div>
+            <p class="text-gray-600">Industry Partners</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Course Explorer Section -->
+    <section id="courses" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold gradient-text mb-4">
+            Explore Our Programs
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Discover cutting-edge courses designed to prepare you for the
+            careers of tomorrow with hands-on learning and industry-relevant
+            skills.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- IT Department Card -->
+          <div class="h-80 relative card-3d">
+            <div
+              class="card-front glassmorphism rounded-lg p-6 h-full flex flex-col items-center justify-center bg-gradient-to-br from-blue-500/10 to-blue-700/20"
+            >
+              <div
+                class="w-20 h-20 flex items-center justify-center bg-blue-100 rounded-full mb-4"
+              >
+                <i class="ri-computer-line ri-2x text-primary"></i>
+              </div>
+              <h3 class="text-xl font-bold text-primary mb-2">
+                Information Technology
+              </h3>
+              <p class="text-gray-600 text-center text-sm">
+                Cutting-edge programs in software development, cybersecurity,
+                and data science.
+              </p>
+            </div>
+
+            <div
+              class="card-back glassmorphism rounded-lg p-6 h-full flex flex-col bg-gradient-to-br from-blue-600/20 to-blue-800/30"
+            >
+              <h3 class="text-xl font-bold text-primary mb-4">IT Programs</h3>
+              <ul class="course-list text-gray-600">
+                <li>• Diploma in ICT</li>
+                <li>• Certificate in ICT</li>
+                <li>• Computer Engineering (Level IV-VI)</li>
+                <li>• Computer Packages</li>
+                <li>• ICDL</li>
+                <li>• Graphic Design</li>
+                <li>• Web Design</li>
+              </ul>
+              <button
+                class="glow-button bg-gradient-to-r from-primary to-blue-500 text-white px-4 py-2 !rounded-button w-full whitespace-nowrap"
+              >
+                Apply Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Engineering Department Card -->
+          <div class="h-80 relative card-3d">
+            <div
+              class="card-front glassmorphism rounded-lg p-6 h-full flex flex-col items-center justify-center bg-gradient-to-br from-green-500/10 to-green-700/20"
+            >
+              <div
+                class="w-20 h-20 flex items-center justify-center bg-green-100 rounded-full mb-4"
+              >
+                <i class="ri-tools-line ri-2x text-green-600"></i>
+              </div>
+              <h3 class="text-xl font-bold text-primary mb-2">Engineering</h3>
+              <p class="text-gray-600 text-center">
+                Innovative programs in mechanical, electrical, and civil
+                engineering disciplines.
+              </p>
+            </div>
+
+            <div
+              class="card-back glassmorphism rounded-lg p-6 h-full flex flex-col bg-gradient-to-br from-green-600/20 to-green-800/30"
+            >
+              <h3 class="text-xl font-bold text-primary mb-4">
+                Engineering Programs
+              </h3>
+              <ul class="course-list text-gray-600">
+                <li>• Diploma in Electrical Engineering</li>
+                <li>• Certificate in Electrical Engineering</li>
+                <li>• Diploma in Plumbing</li>
+                <li>• Certificate in Plumbing</li>
+                <li>• Masonry</li>
+              </ul>
+              <button
+                class="glow-button bg-gradient-to-r from-green-600 to-green-500 text-white px-4 py-2 !rounded-button w-full whitespace-nowrap"
+              >
+                Apply Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Business Department Card -->
+          <div class="h-80 relative card-3d">
+            <div
+              class="card-front glassmorphism rounded-lg p-6 h-full flex flex-col items-center justify-center bg-gradient-to-br from-purple-500/10 to-purple-700/20"
+            >
+              <div
+                class="w-20 h-20 flex items-center justify-center bg-purple-100 rounded-full mb-4"
+              >
+                <i class="ri-briefcase-line ri-2x text-purple-600"></i>
+              </div>
+              <h3 class="text-xl font-bold text-primary mb-2">Business</h3>
+              <p class="text-gray-600 text-center">
+                Comprehensive programs in business administration, marketing,
+                and finance.
+              </p>
+            </div>
+
+            <div
+              class="card-back glassmorphism rounded-lg p-6 h-full flex flex-col bg-gradient-to-br from-purple-600/20 to-purple-800/30"
+            >
+              <h3 class="text-xl font-bold text-primary mb-4">
+                Business Programs
+              </h3>
+              <ul class="course-list text-gray-600">
+                <li>• Diploma in Human Resource Management</li>
+                <li>• Certificate in Human Resource Management</li>
+                <li>• Diploma in Business Management</li>
+                <li>• Diploma in Business Administration</li>
+                <li>• Diploma in Accountancy</li>
+                <li>• Certificate in Accountancy</li>
+                <li>• Diploma in Sales and Marketing</li>
+                <li>• Certificate in Sales and Marketing</li>
+                <li>• Diploma in Supply Chain Management</li>
+                <li>• Certificate in Public Relations</li>
+                <li>• Certificate in Salesmanship</li>
+                <li>• Diploma in Banking and Finance</li>
+                <li>• Certificate in Banking and Finance</li>
+                <li>• CPA & ATD</li>
+                <li>• Artisan in Store Keeping</li>
+                <li>• Event Planning and Management</li>
+              </ul>
+              <button
+                class="glow-button bg-gradient-to-r from-purple-600 to-purple-500 text-white px-4 py-2 !rounded-button w-full whitespace-nowrap"
+              >
+                Apply Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Fashion Department Card -->
+          <div class="h-80 relative card-3d">
+            <div
+              class="card-front glassmorphism rounded-lg p-6 h-full flex flex-col items-center justify-center bg-gradient-to-br from-secondary/10 to-red-700/20"
+            >
+              <div
+                class="w-20 h-20 flex items-center justify-center bg-orange-100 rounded-full mb-4"
+              >
+                <i class="ri-t-shirt-line ri-2x text-secondary"></i>
+              </div>
+              <h3 class="text-xl font-bold text-primary mb-2">
+                Fashion & Design
+              </h3>
+              <p class="text-gray-600 text-center">
+                Creative programs in fashion design, textile development, and
+                interior design.
+              </p>
+            </div>
+
+            <div
+              class="card-back glassmorphism rounded-lg p-6 h-full flex flex-col bg-gradient-to-br from-secondary/20 to-red-800/30"
+            >
+              <h3 class="text-xl font-bold text-primary mb-4">
+                Fashion Programs
+              </h3>
+              <ul class="text-gray-600 mb-6 flex-1">
+                <li class="mb-2">• Diploma in Cosmetology</li>
+                <li class="mb-2">
+                  • Diploma in Hairdressing and Beauty Therapy
+                </li>
+                <li class="mb-2">• Diploma in Fashion Design</li>
+                <li class="mb-2">
+                  • Craft Certificate in Tailoring and Dressmaking
+                </li>
+                <li class="mb-2">• Certificate in Fashion Design</li>
+              </ul>
+              <button
+                class="glow-button bg-gradient-to-r from-secondary to-red-500 text-white px-4 py-2 !rounded-button w-full whitespace-nowrap"
+              >
+                Apply Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Hospitality Department Card -->
+          <div class="h-80 relative card-3d">
+            <div
+              class="card-front glassmorphism rounded-lg p-6 h-full flex flex-col items-center justify-center bg-gradient-to-br from-yellow-500/10 to-yellow-700/20"
+            >
+              <div
+                class="w-20 h-20 flex items-center justify-center bg-yellow-100 rounded-full mb-4"
+              >
+                <i class="ri-restaurant-line ri-2x text-yellow-600"></i>
+              </div>
+              <h3 class="text-xl font-bold text-primary mb-2">
+                Hospitality & Catering
+              </h3>
+              <p class="text-gray-600 text-center">
+                Professional training in hotel management, catering, and tourism
+                services.
+              </p>
+            </div>
+
+            <div
+              class="card-back glassmorphism rounded-lg p-6 h-full flex flex-col bg-gradient-to-br from-yellow-600/20 to-yellow-800/30"
+            >
+              <h3 class="text-xl font-bold text-primary mb-4">
+                Hospitality Programs
+              </h3>
+              <ul class="course-list text-gray-600">
+                <li>• Diploma in Hotel and Catering Management</li>
+                <li>• Certificate in Hotel and Catering Management</li>
+                <li>• Certificate in Pastry and Bakery</li>
+                <li>• Diploma in Tourism and Travel</li>
+                <li>• Certificate in Tourism and Travel</li>
+                <li>• Diploma in Catering and Accommodation</li>
+                <li>• Certificate in Catering and Accommodation</li>
+              </ul>
+              <button
+                class="glow-button bg-gradient-to-r from-yellow-600 to-yellow-500 text-white px-4 py-2 !rounded-button w-full whitespace-nowrap"
+              >
+                Apply Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Secretarial Studies Card -->
+          <div class="h-80 relative card-3d">
+            <div
+              class="card-front glassmorphism rounded-lg p-6 h-full flex flex-col items-center justify-center bg-gradient-to-br from-pink-500/10 to-pink-700/20"
+            >
+              <div
+                class="w-20 h-20 flex items-center justify-center bg-pink-100 rounded-full mb-4"
+              >
+                <i class="ri-file-list-line ri-2x text-pink-600"></i>
+              </div>
+              <h3 class="text-xl font-bold text-primary mb-2">
+                Secretarial Studies
+              </h3>
+              <p class="text-gray-600 text-center">
+                Professional training in office administration and secretarial
+                skills.
+              </p>
+            </div>
+
+            <div
+              class="card-back glassmorphism rounded-lg p-6 h-full flex flex-col bg-gradient-to-br from-pink-600/20 to-pink-800/30"
+            >
+              <h3 class="text-xl font-bold text-primary mb-4">
+                Secretarial Programs
+              </h3>
+              <ul class="text-gray-600 mb-6 flex-1">
+                <li class="mb-2">• Diploma in Secretarial Studies</li>
+                <li class="mb-2">• Certificate in Secretarial Studies</li>
+              </ul>
+              <button
+                class="glow-button bg-gradient-to-r from-pink-600 to-pink-500 text-white px-4 py-2 !rounded-button w-full whitespace-nowrap"
+              >
+                Apply Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Social Sciences Card -->
+          <div class="h-80 relative card-3d">
+            <div
+              class="card-front glassmorphism rounded-lg p-6 h-full flex flex-col items-center justify-center bg-gradient-to-br from-indigo-500/10 to-indigo-700/20"
+            >
+              <div
+                class="w-20 h-20 flex items-center justify-center bg-indigo-100 rounded-full mb-4"
+              >
+                <i class="ri-group-line ri-2x text-indigo-600"></i>
+              </div>
+              <h3 class="text-xl font-bold text-primary mb-2">
+                Social Sciences
+              </h3>
+              <p class="text-gray-600 text-center">
+                Programs in counseling, community development, and social work.
+              </p>
+            </div>
+
+            <div
+              class="card-back glassmorphism rounded-lg p-6 h-full flex flex-col bg-gradient-to-br from-indigo-600/20 to-indigo-800/30"
+            >
+              <h3 class="text-xl font-bold text-primary mb-4">
+                Social Science Programs
+              </h3>
+              <ul class="course-list text-gray-600 mb-6 flex-1">
+                <li class="mb-2">• Diploma in Counseling Psychology</li>
+                <li class="mb-2">• Certificate in Counseling Psychology</li>
+                <li class="mb-2">
+                  • Diploma in Community Development & Social Work
+                </li>
+                <li class="mb-2">
+                  • Certificate in Community Development & Social Work
+                </li>
+              </ul>
+              <button
+                class="glow-button bg-gradient-to-r from-indigo-600 to-indigo-500 text-white px-4 py-2 !rounded-button w-full whitespace-nowrap"
+              >
+                Apply Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Education Card -->
+          <div class="h-80 relative card-3d">
+            <div
+              class="card-front glassmorphism rounded-lg p-6 h-full flex flex-col items-center justify-center bg-gradient-to-br from-teal-500/10 to-teal-700/20"
+            >
+              <div
+                class="w-20 h-20 flex items-center justify-center bg-teal-100 rounded-full mb-4"
+              >
+                <i class="ri-book-open-line ri-2x text-teal-600"></i>
+              </div>
+              <h3 class="text-xl font-bold text-primary mb-2">Education</h3>
+              <p class="text-gray-600 text-center">
+                Professional training in early childhood development and
+                education.
+              </p>
+            </div>
+
+            <div
+              class="card-back glassmorphism rounded-lg p-6 h-full flex flex-col bg-gradient-to-br from-teal-600/20 to-teal-800/30"
+            >
+              <h3 class="text-xl font-bold text-primary mb-4">
+                Education Programs
+              </h3>
+              <ul class="course-list text-gray-600 mb-6 flex-1">
+                <li class="mb-2">• Diploma in ECDE (school-based)</li>
+                <li class="mb-2">• Diploma in ECDE (regular)</li>
+                <li class="mb-2">• Certificate in ECDE (regular)</li>
+                <li class="mb-2">• Certificate in ECDE (school-based)</li>
+              </ul>
+              <button
+                class="glow-button bg-gradient-to-r from-teal-600 to-teal-500 text-white px-4 py-2 !rounded-button w-full whitespace-nowrap"
+              >
+                Apply Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Other Courses Card -->
+          <div class="h-80 relative card-3d">
+            <div
+              class="card-front glassmorphism rounded-lg p-6 h-full flex flex-col items-center justify-center bg-gradient-to-br from-rose-500/10 to-rose-700/20"
+            >
+              <div
+                class="w-20 h-20 flex items-center justify-center bg-rose-100 rounded-full mb-4"
+              >
+                <i class="ri-music-2-line ri-2x text-rose-600"></i>
+              </div>
+              <h3 class="text-xl font-bold text-primary mb-2">Other Courses</h3>
+              <p class="text-gray-600 text-center">
+                Creative and performing arts programs in music and dance.
+              </p>
+            </div>
+
+            <div
+              class="card-back glassmorphism rounded-lg p-6 h-full flex flex-col bg-gradient-to-br from-rose-600/20 to-rose-800/30"
+            >
+              <h3 class="text-xl font-bold text-primary mb-4">
+                Creative Programs
+              </h3>
+              <ul class="course-list text-gray-600 mb-6 flex-1">
+                <li class="mb-2">• Music</li>
+                <li class="mb-2">• Instrumentals</li>
+                <li class="mb-2">• Master of Dancing and Choreography</li>
+              </ul>
+              <button
+                class="glow-button bg-gradient-to-r from-rose-600 to-rose-500 text-white px-4 py-2 !rounded-button w-full whitespace-nowrap"
+              >
+                Apply Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold gradient-text mb-4">
+            Why Choose Thika Talents
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            An affiliate of St. Alicia & Talents Group of Schools, we are
+            committed to transforming positively every learner through their
+            talents and interests at a very individualized level.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="glassmorphism rounded-lg p-8 transform hover:translate-y-[-10px] transition-transform"
+          >
+            <div
+              class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-6"
+            >
+              <i class="ri-vr-line ri-2x text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-3">Holistic Growth</h3>
+            <p class="text-gray-600">
+              We nurture learners holistically, making them self-reliant,
+              efficient, and effective to their families, community, and the
+              entire world.
+            </p>
+          </div>
+
+          <div
+            class="glassmorphism rounded-lg p-8 transform hover:translate-y-[-10px] transition-transform"
+          >
+            <div
+              class="w-16 h-16 flex items-center justify-center bg-green-100 rounded-full mb-6"
+            >
+              <i class="ri-team-line ri-2x text-green-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-3">
+              Professional Excellence
+            </h3>
+            <p class="text-gray-600">
+              Our core values of professionalism, integrity, and excellence
+              guide every aspect of our educational approach.
+            </p>
+          </div>
+
+          <div
+            class="glassmorphism rounded-lg p-8 transform hover:translate-y-[-10px] transition-transform"
+          >
+            <div
+              class="w-16 h-16 flex items-center justify-center bg-purple-100 rounded-full mb-6"
+            >
+              <i class="ri-heart-line ri-2x text-purple-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-3">Value Creation</h3>
+            <p class="text-gray-600">
+              We foster an environment of love, courtesy, and
+              non-discrimination, creating value for our students and community.
+            </p>
+          </div>
+
+          <div
+            class="glassmorphism rounded-lg p-8 transform hover:translate-y-[-10px] transition-transform"
+          >
+            <div
+              class="w-16 h-16 flex items-center justify-center bg-red-100 rounded-full mb-6"
+            >
+              <i class="ri-map-pin-line ri-2x text-red-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-3">Prime Location</h3>
+            <p class="text-gray-600">
+              Located in the heart of Thika town at Imara Plaza, 4th Floor,
+              opposite Kanini Haraka near the Main Stage.
+            </p>
+          </div>
+
+          <div
+            class="glassmorphism rounded-lg p-8 transform hover:translate-y-[-10px] transition-transform"
+          >
+            <div
+              class="w-16 h-16 flex items-center justify-center bg-yellow-100 rounded-full mb-6"
+            >
+              <i class="ri-award-line ri-2x text-yellow-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-3">TVET Accredited</h3>
+            <p class="text-gray-600">
+              As a registered TVET institution, we provide recognized
+              qualifications that prepare students for successful careers.
+            </p>
+          </div>
+
+          <div
+            class="glassmorphism rounded-lg p-8 transform hover:translate-y-[-10px] transition-transform"
+          >
+            <div
+              class="w-16 h-16 flex items-center justify-center bg-teal-100 rounded-full mb-6"
+            >
+              <i class="ri-user-heart-line ri-2x text-teal-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-3">
+              Individual Focus
+            </h3>
+            <p class="text-gray-600">
+              We transform positively every learner in our institution
+              irrespective of their backgrounds through their talents or
+              interests.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold gradient-text mb-4">
+            Student Success Stories
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Hear from our graduates who have transformed their careers through
+            our innovative programs.
+          </p>
+        </div>
+
+        <div class="relative">
+          <div id="testimonial-carousel" class="flex overflow-x-hidden">
+            <div
+              class="testimonial-card glassmorphism rounded-lg p-8 mx-4 min-w-full md:min-w-[calc(50%-2rem)] lg:min-w-[calc(33.333%-2rem)] flex flex-col"
+            >
+              <div class="flex items-center mb-6">
+                <div
+                  class="w-16 h-16 rounded-full overflow-hidden mr-4 border-2 border-secondary"
+                >
+                  <div
+                    class="w-full h-full bg-gray-200"
+                    style="
+                      background-image: url('https://readdy.ai/api/search-image?query=professional%2520portrait%2520of%2520a%2520young%2520African%2520man%2520in%2520business%2520attire%252C%2520smiling%2520confidently%2520at%2520camera%252C%2520clean%2520background%252C%2520high%2520quality%2520professional%2520headshot%252C%2520well-lit%252C%2520modern%2520style&width=200&height=200&seq=test1&orientation=squarish');
+                      background-size: cover;
+                      background-position: center;
+                    "
+                  ></div>
+                </div>
+                <div>
+                  <h4 class="text-lg font-bold text-primary">
+                    Michael Odhiambo
+                  </h4>
+                  <p class="text-gray-600">Software Engineer at Microsoft</p>
+                </div>
+              </div>
+              <div class="mb-6 flex-1">
+                <p class="text-gray-600 italic">
+                  "The immersive learning environment at Thika Talents
+                  completely transformed my understanding of software
+                  development. The AI-enhanced courses adapted to my learning
+                  style, and the industry partnerships gave me real-world
+                  experience that helped me land my dream job at Microsoft."
+                </p>
+              </div>
+              <div class="flex">
+                <div class="text-secondary">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="testimonial-card glassmorphism rounded-lg p-8 mx-4 min-w-full md:min-w-[calc(50%-2rem)] lg:min-w-[calc(33.333%-2rem)] flex flex-col"
+            >
+              <div class="flex items-center mb-6">
+                <div
+                  class="w-16 h-16 rounded-full overflow-hidden mr-4 border-2 border-secondary"
+                >
+                  <div
+                    class="w-full h-full bg-gray-200"
+                    style="
+                      background-image: url('https://readdy.ai/api/search-image?query=professional%2520portrait%2520of%2520a%2520young%2520African%2520woman%2520with%2520natural%2520hair%252C%2520wearing%2520professional%2520attire%252C%2520smiling%2520confidently%2520at%2520camera%252C%2520clean%2520background%252C%2520high%2520quality%2520professional%2520headshot%252C%2520well-lit%252C%2520modern%2520style&width=200&height=200&seq=test2&orientation=squarish');
+                      background-size: cover;
+                      background-position: center;
+                    "
+                  ></div>
+                </div>
+                <div>
+                  <h4 class="text-lg font-bold text-primary">Amina Wanjiku</h4>
+                  <p class="text-gray-600">Robotics Engineer at Tesla</p>
+                </div>
+              </div>
+              <div class="mb-6 flex-1">
+                <p class="text-gray-600 italic">
+                  "The engineering program at Thika Talents provided me with
+                  hands-on experience using cutting-edge technology. The VR labs
+                  allowed me to practice complex robotics concepts in a safe
+                  environment, giving me skills that set me apart from other
+                  candidates when applying to Tesla."
+                </p>
+              </div>
+              <div class="flex">
+                <div class="text-secondary">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="testimonial-card glassmorphism rounded-lg p-8 mx-4 min-w-full md:min-w-[calc(50%-2rem)] lg:min-w-[calc(33.333%-2rem)] flex flex-col"
+            >
+              <div class="flex items-center mb-6">
+                <div
+                  class="w-16 h-16 rounded-full overflow-hidden mr-4 border-2 border-secondary"
+                >
+                  <div
+                    class="w-full h-full bg-gray-200"
+                    style="
+                      background-image: url('https://readdy.ai/api/search-image?query=professional%2520portrait%2520of%2520a%2520young%2520African%2520man%2520with%2520glasses%252C%2520wearing%2520business%2520casual%2520attire%252C%2520smiling%2520confidently%2520at%2520camera%252C%2520clean%2520background%252C%2520high%2520quality%2520professional%2520headshot%252C%2520well-lit%252C%2520modern%2520style&width=200&height=200&seq=test3&orientation=squarish');
+                      background-size: cover;
+                      background-position: center;
+                    "
+                  ></div>
+                </div>
+                <div>
+                  <h4 class="text-lg font-bold text-primary">Daniel Kamau</h4>
+                  <p class="text-gray-600">Fashion Designer at Vogue</p>
+                </div>
+              </div>
+              <div class="mb-6 flex-1">
+                <p class="text-gray-600 italic">
+                  "The fashion design program at Thika Talents combines
+                  traditional techniques with cutting-edge technology. I learned
+                  3D modeling and digital fabric simulation alongside classic
+                  design principles, giving me a competitive edge in the fashion
+                  industry that led to my position at Vogue."
+                </p>
+              </div>
+              <div class="flex">
+                <div class="text-secondary">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-half-fill"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            id="prev-testimonial"
+            class="absolute top-1/2 left-0 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white/80 rounded-full shadow-lg z-10"
+          >
+            <i class="ri-arrow-left-s-line text-primary"></i>
+          </button>
+
+          <button
+            id="next-testimonial"
+            class="absolute top-1/2 right-0 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white/80 rounded-full shadow-lg z-10"
+          >
+            <i class="ri-arrow-right-s-line text-primary"></i>
+          </button>
+        </div>
+
+        <div class="flex justify-center mt-8">
+          <div id="testimonial-dots" class="flex space-x-2">
+            <button
+              class="w-3 h-3 rounded-full bg-primary"
+              data-index="0"
+            ></button>
+            <button
+              class="w-3 h-3 rounded-full bg-gray-300"
+              data-index="1"
+            ></button>
+            <button
+              class="w-3 h-3 rounded-full bg-gray-300"
+              data-index="2"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Campus Tour Section -->
+    <section id="campus-tour" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold gradient-text mb-4">
+            Explore Our Campus
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Take a virtual tour of our state-of-the-art facilities designed for
+            immersive, future-focused learning.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="rounded-lg overflow-hidden h-96 relative group">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end"
+            >
+              <div class="p-6 text-white">
+                <h3 class="text-xl font-bold mb-2">ICT</h3>
+                <p>
+                  Cutting-edge programs in software development, cybersecurity,
+                  and data science.
+                </p>
+              </div>
+            </div>
+            <div
+              class="w-full h-full"
+              style="
+                background-image: url('images/one.png');
+                background-size: cover;
+                background-position: center;
+              "
+            ></div>
+          </div>
+
+          <div class="rounded-lg overflow-hidden h-96 relative group">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end"
+            >
+              <div class="p-6 text-white">
+                <h3 class="text-xl font-bold mb-2">Accounting</h3>
+                <p>
+                  Comprehensive training in financial management, bookkeeping,
+                  and business accounting.
+                </p>
+              </div>
+            </div>
+            <div
+              class="w-full h-full"
+              style="
+                background-image: url('images/Screenshot 2025-06-06 145904.png');
+                background-size: cover;
+                background-position: center;
+              "
+            ></div>
+          </div>
+
+          <div class="rounded-lg overflow-hidden h-96 relative group">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end"
+            >
+              <div class="p-6 text-white">
+                <h3 class="text-xl font-bold mb-2">Cosmetology</h3>
+                <p>
+                  Professional training in beauty therapy, hairdressing, and
+                  personal care services.
+                </p>
+              </div>
+            </div>
+            <div
+              class="w-full h-full"
+              style="
+                background-image: url('images/Screenshot 2025-06-06 145848.png');
+                background-size: cover;
+                background-position: center;
+              "
+            ></div>
+          </div>
+
+          <div class="rounded-lg overflow-hidden h-96 relative group">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end"
+            >
+              <div class="p-6 text-white">
+                <h3 class="text-xl font-bold mb-2">Hospitality</h3>
+                <p>
+                  Expert training in hotel management, culinary arts, and
+                  customer service excellence.
+                </p>
+              </div>
+            </div>
+            <div
+              class="w-full h-full"
+              style="
+                background-image: url('images/Screenshot 2025-06-06 145830.png');
+                background-size: cover;
+                background-position: center;
+              "
+            ></div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <button
+            class="glow-button bg-gradient-to-r from-primary to-blue-500 text-white px-8 py-3 !rounded-button font-medium whitespace-nowrap"
+            onclick="openVisitForm()"
+          >
+            Schedule a Campus Visit
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 relative overflow-hidden">
+      <div
+        class="absolute inset-0"
+        style="
+          background-image: url('https://readdy.ai/api/search-image?query=abstract%2520futuristic%2520background%2520with%2520blue%2520gradient%252C%2520geometric%2520shapes%252C%2520digital%2520particles%252C%2520technology%2520concept%252C%2520subtle%2520pattern%252C%2520clean%2520design%252C%2520perfect%2520for%2520text%2520overlay&width=1920&height=600&seq=cta&orientation=landscape');
+          background-size: cover;
+          background-position: center;
+        "
+      ></div>
+      <div class="absolute inset-0 bg-primary/70"></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-3xl mx-auto text-center text-white">
+          <h2 class="text-4xl font-bold mb-6">Ready to Shape Your Future?</h2>
+          <p class="text-xl mb-8">
+            Join Thika Talents Technical College and experience education that
+            nurtures your talents into successful careers. Applications are now
+            open.
+          </p>
+
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <button
+              class="glow-button bg-gradient-to-r from-secondary to-yellow-500 text-white px-8 py-3 !rounded-button font-medium whitespace-nowrap"
+              onclick="openApplicationForm()"
+            >
+              Apply Now
+            </button>
+            <a
+              href="https://drive.google.com/file/d/1HtgqjaQjIapC5mGq83601-wyT2yUPTJp/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="glassmorphism text-white px-8 py-3 !rounded-button font-medium whitespace-nowrap"
+            >
+              Download Brochure
+            </a>
+          </div>
+
+          <div class="mt-12">
+            <p class="text-white/80 mb-4">
+              Subscribe to our newsletter for updates
+            </p>
+            <form
+              id="newsletter-form"
+              class="flex flex-col sm:flex-row gap-4"
+              onsubmit="subscribeToNewsletter(event)"
+            >
+              <input
+                type="email"
+                id="newsletter-email"
+                placeholder="Enter your email"
+                class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary text-black"
+                required
+              />
+              <button
+                type="submit"
+                class="glow-button bg-gradient-to-r from-primary to-blue-500 text-white px-6 py-3 !rounded-button whitespace-nowrap"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 text-white py-12">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <a
+              href="#"
+              class="text-3xl font-['Pacifico'] text-primary bg-white px-4 py-2 rounded-lg shadow mb-4 block"
+              >TTTC</a
+            >
+            <p class="text-gray-400 mb-2">Thika Talents Technical College</p>
+            <p class="text-gray-400 mb-2 italic">
+              "Where Talent Grows into Careers"
+            </p>
+            <p class="text-gray-400 mb-6">
+              Affiliated with St. Alicia & Talents Group of Schools
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/20 hover:bg-primary/40 transition-colors"
+              >
+                <i class="ri-facebook-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/20 hover:bg-primary/40 transition-colors"
+              >
+                <i class="ri-twitter-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/20 hover:bg-primary/40 transition-colors"
+              >
+                <i class="ri-instagram-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/20 hover:bg-primary/40 transition-colors"
+              >
+                <i class="ri-linkedin-fill"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Programs</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Admissions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Campus Life</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Careers</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold mb-4">Contact Us</h4>
+            <ul class="space-y-2">
+              <li class="flex items-start">
+                <i class="ri-map-pin-line mt-1 mr-2"></i>
+                <span class="text-gray-400"
+                  >Imara Plaza, Thika (Opposite Kanini Haraka, Near Main
+                  Stage)</span
+                >
+              </li>
+              <li class="flex items-start">
+                <i class="ri-phone-line mt-1 mr-2"></i>
+                <span class="text-gray-400">+254 700 139110</span>
+              </li>
+              <li class="flex items-start">
+                <i class="ri-mail-line mt-1 mr-2"></i>
+                <span class="text-gray-400">admin-thikatalents@gmail.com</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold mb-4">Opening Hours</h4>
+            <ul class="space-y-2">
+              <li class="flex justify-between">
+                <span class="text-gray-400">Monday - Friday:</span>
+                <span class="text-gray-400">8:00 AM - 6:00 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span class="text-gray-400">Saturday:</span>
+                <span class="text-gray-400">9:00 AM - 1:00 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span class="text-gray-400">Sunday:</span>
+                <span class="text-gray-400">Closed</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-400 text-sm">
+            © 2025 Thika Talents Technical College. All rights reserved.
+          </p>
+          <div class="flex space-x-4 mt-4 md:mt-0">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Privacy Policy</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Terms of Service</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Cookie Policy</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Application Form Overlay -->
+    <div id="application-overlay" class="application-overlay">
+      <button class="close-form" onclick="closeApplicationForm()">
+        <i class="ri-close-line"></i>
+      </button>
+      <div class="application-form">
+        <h2 class="text-2xl font-bold text-primary mb-6">Apply Now</h2>
+        <form id="application-form" onsubmit="submitApplication(event)">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+          <div class="form-group">
+            <label for="course">Select Course</label>
+            <select id="course" name="course" required>
+              <!-- Options will be populated dynamically -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="education">Highest Education Level</label>
+            <select id="education" name="education" required>
+              <option value="">Select Education Level</option>
+              <option value="high_school">High School</option>
+              <option value="diploma">Diploma</option>
+              <option value="degree">Degree</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Additional Information</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              class="w-full p-3 border rounded-lg"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="glow-button bg-gradient-to-r from-primary to-blue-500 text-white px-6 py-3 !rounded-button w-full"
+          >
+            Submit Application
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Course Explorer Overlay -->
+    <div id="course-explorer-overlay" class="application-overlay">
+      <button class="close-form" onclick="closeCourseExplorer()">
+        <i class="ri-close-line"></i>
+      </button>
+      <div class="application-form">
+        <h2 class="text-2xl font-bold text-primary mb-6">
+          Explore Our Programs
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Course categories will be populated here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Overlay -->
+    <div id="success-overlay" class="application-overlay" style="display: none">
+      <div class="application-form text-center">
+        <h2 class="text-2xl font-bold text-green-600 mb-4">
+          Application Submitted!
+        </h2>
+        <p class="text-gray-700 mb-6">
+          Thank you for your application.<br />
+          We have received your details and will contact you soon.
+        </p>
+        <button
+          onclick="closeSuccessOverlay()"
+          class="glow-button bg-gradient-to-r from-green-600 to-green-400 text-white px-6 py-3 !rounded-button w-full"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+
+    <!-- Campus Visit Form Overlay -->
+    <div id="visit-overlay" class="application-overlay">
+      <button class="close-form" onclick="closeVisitForm()">
+        <i class="ri-close-line"></i>
+      </button>
+      <div class="application-form">
+        <h2 class="text-2xl font-bold text-primary mb-6">
+          Schedule a Campus Visit
+        </h2>
+        <form id="visit-form" onsubmit="submitVisitRequest(event)">
+          <div class="form-group">
+            <label for="visitName">Full Name</label>
+            <input type="text" id="visitName" name="visitName" required />
+          </div>
+          <div class="form-group">
+            <label for="visitEmail">Email</label>
+            <input type="email" id="visitEmail" name="visitEmail" required />
+          </div>
+          <div class="form-group">
+            <label for="visitPhone">Phone Number</label>
+            <input type="tel" id="visitPhone" name="visitPhone" required />
+          </div>
+          <div class="form-group">
+            <label for="visitDate">Preferred Visit Date</label>
+            <input
+              type="date"
+              id="visitDate"
+              name="visitDate"
+              required
+              min="2024-03-20"
+            />
+          </div>
+          <div class="form-group">
+            <label for="visitTime">Preferred Visit Time</label>
+            <select id="visitTime" name="visitTime" required>
+              <option value="">Select Time</option>
+              <option value="09:00 AM">09:00 AM</option>
+              <option value="10:00 AM">10:00 AM</option>
+              <option value="11:00 AM">11:00 AM</option>
+              <option value="02:00 PM">02:00 PM</option>
+              <option value="03:00 PM">03:00 PM</option>
+              <option value="04:00 PM">04:00 PM</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="visitMessage">Additional Information</label>
+            <textarea
+              id="visitMessage"
+              name="visitMessage"
+              rows="4"
+              class="w-full p-3 border rounded-lg"
+              placeholder="Any specific areas you'd like to visit or questions you have?"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="glow-button bg-gradient-to-r from-primary to-blue-500 text-white px-6 py-3 !rounded-button w-full"
+          >
+            Schedule Visit
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Visit Success Overlay -->
+    <div
+      id="visit-success-overlay"
+      class="application-overlay"
+      style="display: none"
+    >
+      <div class="application-form text-center">
+        <h2 class="text-2xl font-bold text-green-600 mb-4">Visit Scheduled!</h2>
+        <p class="text-gray-700 mb-6">
+          Thank you for scheduling a campus visit.<br />
+          We have received your request and will confirm your visit shortly.
+        </p>
+        <button
+          onclick="closeVisitSuccessOverlay()"
+          class="glow-button bg-gradient-to-r from-green-600 to-green-400 text-white px-6 py-3 !rounded-button w-full"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+
+    <script id="mobile-menu-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+
+          const icon = mobileMenuButton.querySelector("i");
+          if (icon.classList.contains("ri-menu-line")) {
+            icon.classList.remove("ri-menu-line");
+            icon.classList.add("ri-close-line");
+          } else {
+            icon.classList.remove("ri-close-line");
+            icon.classList.add("ri-menu-line");
+          }
+        });
+      });
+    </script>
+
+    <script id="counter-animation-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const counters = document.querySelectorAll(".counter");
+        const speed = 200;
+
+        const animateCounters = () => {
+          counters.forEach((counter) => {
+            const target = +counter.getAttribute("data-target");
+            const count = +counter.innerText;
+            const increment = Math.ceil(target / speed);
+
+            if (count < target) {
+              counter.innerText = count + increment;
+              setTimeout(() => animateCounters(), 1);
+            } else {
+              counter.innerText = target;
+            }
+          });
+        };
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                animateCounters();
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+
+        if (counters.length > 0) {
+          observer.observe(counters[0].parentElement.parentElement);
+        }
+      });
+    </script>
+
+    <script id="testimonial-carousel-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const carousel = document.getElementById("testimonial-carousel");
+        const prevButton = document.getElementById("prev-testimonial");
+        const nextButton = document.getElementById("next-testimonial");
+        const dots = document.querySelectorAll("#testimonial-dots button");
+
+        let currentIndex = 0;
+        let slideWidth = 0;
+        let maxIndex = 0;
+
+        function updateCarouselSize() {
+          const testimonials = carousel.querySelectorAll(".testimonial-card");
+          if (window.innerWidth >= 1024) {
+            // lg
+            slideWidth = testimonials[0].offsetWidth + 32; // width + margin
+            maxIndex = testimonials.length - 3;
+          } else if (window.innerWidth >= 768) {
+            // md
+            slideWidth = testimonials[0].offsetWidth + 32;
+            maxIndex = testimonials.length - 2;
+          } else {
+            // sm
+            slideWidth = testimonials[0].offsetWidth + 32;
+            maxIndex = testimonials.length - 1;
+          }
+
+          if (maxIndex < 0) maxIndex = 0;
+          if (currentIndex > maxIndex) currentIndex = maxIndex;
+
+          updateCarousel();
+        }
+
+        function updateCarousel() {
+          carousel.style.transform = `translateX(-${
+            currentIndex * slideWidth
+          }px)`;
+          carousel.style.transition = "transform 0.5s ease";
+
+          dots.forEach((dot, index) => {
+            if (index === currentIndex) {
+              dot.classList.remove("bg-gray-300");
+              dot.classList.add("bg-primary");
+            } else {
+              dot.classList.remove("bg-primary");
+              dot.classList.add("bg-gray-300");
+            }
+          });
+        }
+
+        prevButton.addEventListener("click", () => {
+          if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+          }
+        });
+
+        nextButton.addEventListener("click", () => {
+          if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateCarousel();
+          }
+        });
+
+        dots.forEach((dot, index) => {
+          dot.addEventListener("click", () => {
+            currentIndex = index;
+            if (currentIndex > maxIndex) currentIndex = maxIndex;
+            updateCarousel();
+          });
+        });
+
+        window.addEventListener("resize", updateCarouselSize);
+        updateCarouselSize();
+
+        // Auto slide
+        let autoSlideInterval = setInterval(() => {
+          if (currentIndex < maxIndex) {
+            currentIndex++;
+          } else {
+            currentIndex = 0;
+          }
+          updateCarousel();
+        }, 5000);
+
+        carousel.addEventListener("mouseenter", () => {
+          clearInterval(autoSlideInterval);
+        });
+
+        carousel.addEventListener("mouseleave", () => {
+          autoSlideInterval = setInterval(() => {
+            if (currentIndex < maxIndex) {
+              currentIndex++;
+            } else {
+              currentIndex = 0;
+            }
+            updateCarousel();
+          }, 5000);
+        });
+      });
+    </script>
+
+    <script id="parallax-effect-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const parallaxElements = document.querySelectorAll(".parallax");
+
+        document.addEventListener("mousemove", (e) => {
+          const x = e.clientX / window.innerWidth;
+          const y = e.clientY / window.innerHeight;
+
+          parallaxElements.forEach((element) => {
+            const speed = element.getAttribute("data-speed") || 20;
+            const moveX = (x - 0.5) * speed;
+            const moveY = (y - 0.5) * speed;
+
+            element.style.transform = `translate(${moveX}px, ${moveY}px)`;
+          });
+        });
+      });
+    </script>
+
+    <script id="particle-animation-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const particlesContainer = document.getElementById(
+          "particles-container"
+        );
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.classList.add("particle");
+
+          // Random size between 2px and 6px
+          const size = Math.random() * 4 + 2;
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+
+          // Random position
+          const posX = Math.random() * 100;
+          const posY = Math.random() * 100;
+          particle.style.left = `${posX}%`;
+          particle.style.top = `${posY}%`;
+
+          // Random opacity
+          particle.style.opacity = Math.random() * 0.5 + 0.1;
+
+          // Animation
+          const duration = Math.random() * 20 + 10;
+          particle.style.animation = `float ${duration}s ease-in-out infinite`;
+          particle.style.animationDelay = `${Math.random() * 5}s`;
+
+          particlesContainer.appendChild(particle);
+        }
+      });
+    </script>
+
+    <script id="scroll-animation-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("slide-in");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        document.querySelectorAll("section > div > div").forEach((element) => {
+          element.classList.add("opacity-0");
+          observer.observe(element);
+        });
+      });
+    </script>
+
+    <!-- Application Form Scripts -->
+    <script>
+      let currentDepartment = "";
+
+      // Function to get all courses from all departments
+      function getAllCourses() {
+        const courses = [];
+        const cards = document.querySelectorAll(".card-3d");
+
+        cards.forEach((card) => {
+          const department = card.querySelector(".card-front h3").textContent;
+          const courseList = card.querySelectorAll(".course-list li");
+
+          courseList.forEach((course) => {
+            courses.push({
+              department: department,
+              course: course.textContent.trim(),
+            });
+          });
+        });
+
+        return courses;
+      }
+
+      function openApplicationForm(department = "", courses = []) {
+        currentDepartment = department;
+        const overlay = document.getElementById("application-overlay");
+        const courseSelect = document.getElementById("course");
+
+        // Clear existing options
+        courseSelect.innerHTML = "";
+
+        // If no specific department is provided (navbar button), show all courses
+        if (!department) {
+          const allCourses = getAllCourses();
+          const departments = [...new Set(allCourses.map((c) => c.department))];
+
+          departments.forEach((dept) => {
+            const optgroup = document.createElement("optgroup");
+            optgroup.label = dept;
+
+            allCourses
+              .filter((c) => c.department === dept)
+              .forEach((c) => {
+                const option = document.createElement("option");
+                option.value = c.course;
+                option.textContent = c.course;
+                optgroup.appendChild(option);
+              });
+
+            courseSelect.appendChild(optgroup);
+          });
+        } else {
+          // Add courses for specific department
+          courses.forEach((course) => {
+            const option = document.createElement("option");
+            option.value = course;
+            option.textContent = course;
+            courseSelect.appendChild(option);
+          });
+        }
+
+        overlay.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeApplicationForm() {
+        const overlay = document.getElementById("application-overlay");
+        overlay.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      async function submitApplication(event) {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const fullName = formData.get("fullName");
+        const email = formData.get("email");
+        const phone = formData.get("phone");
+        const course = formData.get("course");
+        const education = formData.get("education");
+        const message =
+          formData.get("message") || "I am interested in joining your college!";
+
+        // Validation
+        if (!fullName || !email || !phone || !course || !education) {
+          alert("Please fill in all required fields.");
+          return;
+        }
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+          alert("Please enter a valid email address.");
+          return;
+        }
+
+        // Show loading state
+        const submitButton = event.target.querySelector(
+          'button[type="submit"]'
+        );
+        const originalButtonText = submitButton.textContent;
+        submitButton.textContent = "Submitting...";
+        submitButton.disabled = true;
+
+        try {
+          // Prepare template params for EmailJS
+          const templateParams = {
+            to_email: "admin-thikatalents@gmail.com",
+            from_name: fullName,
+            from_email: email,
+            phone_number: phone,
+            course: course,
+            education_level: education,
+            message: message,
+            reply_to: email,
+          };
+
+          await emailjs.send(
+            "service_qnvwuo8",
+            "template_weh90cb",
+            templateParams,
+            "ogbDCqrnCpoZxE7pW"
+          );
+
+          // Reset form and show success message
+          event.target.reset();
+          closeApplicationForm();
+          showSuccessOverlay();
+        } catch (error) {
+          console.error("Error submitting application:", error);
+          alert(
+            "There was an error submitting your application. Please try again later."
+          );
+        } finally {
+          // Reset button state
+          submitButton.textContent = originalButtonText;
+          submitButton.disabled = false;
+        }
+      }
+
+      // Update all Apply Now buttons
+      document.addEventListener("DOMContentLoaded", function () {
+        // Handle card Apply Now buttons
+        const cards = document.querySelectorAll(".card-3d");
+        cards.forEach((card) => {
+          const button = card.querySelector("button");
+          const department = card.querySelector("h3").textContent;
+          const courses = Array.from(card.querySelectorAll("li")).map((li) =>
+            li.textContent.trim()
+          );
+
+          button.textContent = "Apply Now";
+          button.onclick = () => openApplicationForm(department, courses);
+        });
+
+        // Handle navbar Apply Now buttons
+        const navbarButtons = document.querySelectorAll(
+          "nav button, .hero-section button, .cta-section button"
+        );
+        navbarButtons.forEach((button) => {
+          if (button.textContent.trim() === "Apply Now") {
+            button.onclick = () => openApplicationForm();
+          }
+        });
+
+        // Handle CTA section Apply Now button
+        const ctaButton = document.querySelector(".cta-section .glow-button");
+        if (ctaButton) {
+          ctaButton.onclick = () => openApplicationForm();
+        }
+      });
+    </script>
+
+    <script>
+      // Add to existing scripts
+      function openCourseExplorer() {
+        console.log("Opening course explorer..."); // Debug log
+        const overlay = document.getElementById("course-explorer-overlay");
+        const container = overlay.querySelector(".grid");
+        container.innerHTML = ""; // Clear existing content
+
+        const allCourses = getAllCourses();
+        const departments = [...new Set(allCourses.map((c) => c.department))];
+
+        departments.forEach((dept) => {
+          const categoryDiv = document.createElement("div");
+          categoryDiv.className = "course-category";
+
+          const heading = document.createElement("h3");
+          heading.textContent = dept;
+          categoryDiv.appendChild(heading);
+
+          const coursesList = document.createElement("div");
+          coursesList.className = "space-y-2";
+
+          allCourses
+            .filter((c) => c.department === dept)
+            .forEach((c) => {
+              const courseItem = document.createElement("div");
+              courseItem.className = "course-list-item";
+              courseItem.textContent = c.course;
+              courseItem.onclick = () => {
+                closeCourseExplorer();
+                openApplicationForm(dept, [c.course]);
+                // Pre-select the course in the application form
+                const courseSelect = document.getElementById("course");
+                if (courseSelect) {
+                  courseSelect.value = c.course;
+                }
+              };
+              coursesList.appendChild(courseItem);
+            });
+
+          categoryDiv.appendChild(coursesList);
+          container.appendChild(categoryDiv);
+        });
+
+        overlay.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeCourseExplorer() {
+        const overlay = document.getElementById("course-explorer-overlay");
+        overlay.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      // Update the DOMContentLoaded event listener
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("DOM Content Loaded"); // Debug log
+
+        // Handle card Apply Now buttons
+        const cards = document.querySelectorAll(".card-3d");
+        cards.forEach((card) => {
+          const button = card.querySelector("button");
+          const department = card.querySelector("h3").textContent;
+          const courses = Array.from(card.querySelectorAll("li")).map((li) =>
+            li.textContent.trim()
+          );
+
+          button.textContent = "Apply Now";
+          button.onclick = () => openApplicationForm(department, courses);
+        });
+
+        // Handle navbar Apply Now buttons
+        const navbarButtons = document.querySelectorAll(
+          "nav button, .hero-section button, .cta-section button"
+        );
+        navbarButtons.forEach((button) => {
+          if (button.textContent.trim() === "Apply Now") {
+            button.onclick = () => openApplicationForm();
+          }
+        });
+
+        // Handle CTA section Apply Now button
+        const ctaButton = document.querySelector(".cta-section .glow-button");
+        if (ctaButton) {
+          ctaButton.onclick = () => openApplicationForm();
+        }
+
+        // Add handler for Explore Programs button
+        const exploreButton = document.getElementById("explore-programs-btn");
+        if (exploreButton) {
+          console.log("Explore Programs button found"); // Debug log
+          exploreButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            console.log("Explore Programs button clicked"); // Debug log
+            openCourseExplorer();
+          });
+        } else {
+          console.log("Explore Programs button not found"); // Debug log
+        }
+      });
+    </script>
+
+    <!-- EmailJS integration -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+      (function () {
+        emailjs.init("ogbDCqrnCpoZxE7pW"); // PUBLIC KEY
+      })();
+    </script>
+
+    <script>
+      function showSuccessOverlay() {
+        const overlay = document.getElementById("success-overlay");
+        overlay.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeSuccessOverlay() {
+        const overlay = document.getElementById("success-overlay");
+        overlay.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+    </script>
+    <script
+      defer
+      data-relevanceai-share-id="d7b62b/33c460ebca76-469a-b928-086f88869865/e32d7de6-853a-498e-9a7c-eb6812979947"
+      src="https://app.relevanceai.com/embed/chat-bubble.js"
+      data-share-styles="hide_tool_steps=false&hide_file_uploads=false&hide_conversation_list=false&bubble_style=agent&primary_color=%23685FFF&bubble_icon=pd%2Fchat&input_placeholder_text=Type+your+message...&hide_logo=false&hide_description=false"
+    ></script>
+    <div id="root"></div>
+
+    <script>
+      // Login overlay functionality
+      const loginButton = document.getElementById("login-button");
+      const mobileLoginButton = document.getElementById("mobile-login-button");
+      const loginOverlay = document.getElementById("login-overlay");
+      const closeLogin = document.getElementById("close-login");
+      const loginForm = document.getElementById("login-form");
+      const loginFeedback = document.getElementById("login-feedback");
+      const closeFeedback = document.getElementById("close-feedback");
+
+      function showLoginOverlay() {
+        loginOverlay.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      function hideLoginOverlay() {
+        loginOverlay.classList.add("hidden");
+        document.body.style.overflow = "auto";
+      }
+
+      function showFeedback() {
+        loginFeedback.classList.remove("hidden");
+        hideLoginOverlay();
+      }
+
+      function hideFeedback() {
+        loginFeedback.classList.add("hidden");
+        document.body.style.overflow = "auto";
+      }
+
+      // Add event listeners
+      if (loginButton) loginButton.addEventListener("click", showLoginOverlay);
+      if (mobileLoginButton)
+        mobileLoginButton.addEventListener("click", showLoginOverlay);
+      if (closeLogin) closeLogin.addEventListener("click", hideLoginOverlay);
+      if (closeFeedback) closeFeedback.addEventListener("click", hideFeedback);
+
+      // Handle form submission
+      if (loginForm) {
+        loginForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          // Always show feedback for any login attempt
+          showFeedback();
+        });
+      }
+
+      // Close overlays when clicking outside
+      if (loginOverlay) {
+        loginOverlay.addEventListener("click", (e) => {
+          if (e.target === loginOverlay) {
+            hideLoginOverlay();
+          }
+        });
+      }
+
+      if (loginFeedback) {
+        loginFeedback.addEventListener("click", (e) => {
+          if (e.target === loginFeedback) {
+            hideFeedback();
+          }
+        });
+      }
+    </script>
+
+    <script>
+      // Add these new functions for campus visit form
+      function openVisitForm() {
+        const overlay = document.getElementById("visit-overlay");
+        overlay.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeVisitForm() {
+        const overlay = document.getElementById("visit-overlay");
+        overlay.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      function showVisitSuccessOverlay() {
+        const overlay = document.getElementById("visit-success-overlay");
+        overlay.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeVisitSuccessOverlay() {
+        const overlay = document.getElementById("visit-success-overlay");
+        overlay.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      async function submitVisitRequest(event) {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const fullName = formData.get("visitName");
+        const email = formData.get("visitEmail");
+        const phone = formData.get("visitPhone");
+        const visitDate = formData.get("visitDate");
+        const visitTime = formData.get("visitTime");
+        const message = formData.get("visitMessage") || "";
+
+        // Validation
+        if (!fullName || !email || !phone || !visitDate || !visitTime) {
+          alert("Please fill in all required fields.");
+          return;
+        }
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+          alert("Please enter a valid email address.");
+          return;
+        }
+
+        // Show loading state
+        const submitButton = event.target.querySelector(
+          'button[type="submit"]'
+        );
+        const originalButtonText = submitButton.textContent;
+        submitButton.textContent = "Scheduling...";
+        submitButton.disabled = true;
+
+        try {
+          // Prepare template params for EmailJS
+          const templateParams = {
+            to_email: "admin-thikatalents@gmail.com",
+            from_name: fullName,
+            from_email: email,
+            phone_number: phone,
+            visit_date: visitDate,
+            visit_time: visitTime,
+            message: message,
+            reply_to: email,
+          };
+
+          await emailjs.send(
+            "service_qnvwuo8",
+            "template_e0zgost",
+            templateParams,
+            "ogbDCqrnCpoZxE7pW"
+          );
+
+          // Reset form and show success message
+          event.target.reset();
+          closeVisitForm();
+          showVisitSuccessOverlay();
+        } catch (error) {
+          console.error("Error scheduling visit:", error);
+          alert(
+            "There was an error scheduling your visit. Please try again later."
+          );
+        } finally {
+          // Reset button state
+          submitButton.textContent = originalButtonText;
+          submitButton.disabled = false;
+        }
+      }
+
+      // Update the Schedule Campus Visit button
+      document.addEventListener("DOMContentLoaded", function () {
+        const scheduleButton = document.querySelector(
+          'button[onclick="openVisitForm()"]'
+        );
+        if (scheduleButton) {
+          scheduleButton.onclick = openVisitForm;
+        }
+      });
+    </script>
+
+    <script>
+      // Initialize Supabase client
+      const supabaseUrl = "https://ahjtytkfxzaapkwzppwk.supabase.co";
+      const supabaseKey =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFoanR5dGtmeHphYXBrd3pwcHdrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4NDY5NzcsImV4cCI6MjA2MzQyMjk3N30.lOEid1_YLrjzRNZNi3FX4OmQlnqX0g07qzBm8aUufXA";
+
+      // Create Supabase client with proper initialization
+      const supabase = window.supabase.createClient(supabaseUrl, supabaseKey, {
+        auth: {
+          autoRefreshToken: true,
+          persistSession: true,
+          detectSessionInUrl: true,
+        },
+      });
+
+      // Add this function for newsletter subscription
+      async function subscribeToNewsletter(event) {
+        event.preventDefault();
+        console.log("Subscription started"); // Debug log
+
+        const email = document.getElementById("newsletter-email").value;
+        console.log("Email:", email); // Debug log
+
+        if (!email) {
+          alert("Please enter your email address.");
+          return;
+        }
+
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+          alert("Please enter a valid email address.");
+          return;
+        }
+
+        // Show loading state
+        const subscribeButton = event.target.querySelector(
+          'button[type="submit"]'
+        );
+        const originalButtonText = subscribeButton.textContent;
+        subscribeButton.textContent = "Subscribing...";
+        subscribeButton.disabled = true;
+
+        try {
+          console.log("Attempting to insert into Supabase"); // Debug log
+
+          // Insert into Supabase with proper headers
+          const { data, error } = await supabase
+            .from("newsletter_subscribers")
+            .insert([{ email: email }])
+            .select()
+            .single();
+
+          console.log("Supabase response:", { data, error }); // Debug log
+
+          if (error) {
+            if (error.code === "23505") {
+              // Unique violation
+              alert("You're already subscribed to our newsletter!");
+            } else {
+              console.error("Supabase error:", error); // Debug log
+              throw error;
+            }
+          } else {
+            // Show success message
+            const successMessage = document.createElement("div");
+            successMessage.className = "text-green-600 mt-2";
+            successMessage.textContent = "Thank you for subscribing!";
+            event.target.appendChild(successMessage);
+
+            // Reset form
+            event.target.reset();
+
+            // Remove success message after 3 seconds
+            setTimeout(() => {
+              successMessage.remove();
+            }, 3000);
+          }
+        } catch (error) {
+          console.error("Error subscribing to newsletter:", error);
+          alert(
+            "There was an error subscribing to the newsletter. Please try again later."
+          );
+        } finally {
+          // Reset button state
+          subscribeButton.textContent = originalButtonText;
+          subscribeButton.disabled = false;
+        }
+      }
+
+      // Initialize the form when the page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("DOM loaded, initializing newsletter form"); // Debug log
+        const newsletterForm = document.getElementById("newsletter-form");
+        if (newsletterForm) {
+          console.log("Newsletter form found"); // Debug log
+          newsletterForm.onsubmit = subscribeToNewsletter;
+        } else {
+          console.error("Newsletter form not found!"); // Debug log
+        }
+      });
+    </script>
+
+    <script>
+      // Add smooth scroll function with offset for fixed header
+      function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const headerOffset = 80; // Adjust this value based on your header height
+          const elementPosition = section.getBoundingClientRect().top;
+          const offsetPosition =
+            elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+
+          // Close mobile menu if open
+          const mobileMenu = document.getElementById("mobile-menu");
+          if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+            toggleMobileMenu();
+          }
+        }
+      }
+
+      // Add click event listeners to all navigation links
+      document.addEventListener("DOMContentLoaded", function () {
+        const navLinks = document.querySelectorAll('a[href^="#"]');
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href").substring(1);
+            scrollToSection(targetId);
+          });
+        });
+      });
+    </script>
+
+    <script>
+      // Mobile menu functionality
+      document
+        .getElementById("mobile-menu-button")
+        .addEventListener("click", function () {
+          document.getElementById("mobile-menu").classList.remove("hidden");
+        });
+
+      // Close mobile menu when clicking outside
+      document
+        .getElementById("mobile-menu")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            this.classList.add("hidden");
+          }
+        });
+
+      // Close mobile menu when pressing escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          document.getElementById("mobile-menu").classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
